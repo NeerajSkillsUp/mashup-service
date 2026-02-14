@@ -11,7 +11,6 @@ def run_mashup(singer, n, y, out_file):
         'nocheckcertificate': True,
         'outtmpl': f'temp_{unique_id}_%(id)s.%(ext)s',
         'max_downloads': n,
-        'extractor_args': {'youtube': {'player_client': ['android']}},
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -20,13 +19,13 @@ def run_mashup(singer, n, y, out_file):
     }
 
     with YoutubeDL(options) as ydl:
-        ydl.download([f"ytsearch{n}:{singer} official audio"])
+        ydl.download([f"scsearch{n}:{singer}"])
 
     time.sleep(2) 
     files = [f for f in os.listdir() if f.startswith(f"temp_{unique_id}_") and f.endswith(".mp3")]
     
     if not files:
-        raise Exception("YouTube blocked the request. Try again in 5 minutes or use a different singer name.")
+        raise Exception("Audio source unavailable. Try a different singer name.")
 
     mashup = AudioSegment.empty()
     for f in files:
