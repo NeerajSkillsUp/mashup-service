@@ -30,7 +30,7 @@ def run_mashup(singer, n, y, out_file):
 
     with YoutubeDL(options) as ydl:
         try:
-            ydl.download([f"ytsearch{n}:{singer}"])
+            ydl.download([f"ytsearch{n}:{singer} songs official"])
         except Exception:
             pass 
 
@@ -54,4 +54,5 @@ def run_mashup(singer, n, y, out_file):
 
 if __name__ == "__main__":
     if len(sys.argv) == 5:
+
         run_mashup(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), sys.argv[4])
