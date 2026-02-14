@@ -11,6 +11,8 @@ def run_mashup(singer, n, y, out_file):
         'nocheckcertificate': True,
         'outtmpl': f'temp_{unique_id}_%(id)s.%(ext)s',
         'max_downloads': n,
+        'ignoreerrors': True, 
+        'extractor_args': {'youtube': {'player_client': ['android']}},
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -37,3 +39,4 @@ def run_mashup(singer, n, y, out_file):
 
     mashup.export(out_file, format="mp3")
     return out_file
+
