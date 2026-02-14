@@ -19,8 +19,16 @@ def run_mashup(singer, n, y, out_file):
     options = {
         'format': 'bestaudio/best',
         'quiet': True,
+        'no_warnings': True,
+        'nocheckcertificate': True,
         'outtmpl': f'temp_{unique_id}_%(id)s.%(ext)s',
         'max_downloads': n,
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.google.com/',
+        },
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -56,3 +64,4 @@ if __name__ == "__main__":
     if len(sys.argv) == 5:
 
         run_mashup(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), sys.argv[4])
+
