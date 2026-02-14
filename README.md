@@ -9,8 +9,6 @@ Try the App Here: https://mashup-service.streamlit.app/
 # 🏗️ How it Works
 The app follows a 4-step automated pipeline:
 
-(Note: Replace with your own diagram link)
-
 Search: Finds the artist using a custom search engine.
 
 Download: Uses a "mobile-signature" bypass to avoid server blocks.
