@@ -19,11 +19,16 @@ def run_mashup(singer, n, y, out_file):
             'preferredquality': '192',
         }],
     }
-
     with YoutubeDL(options) as ydl:
-        ydl.download([f"scsearch{n}:{singer}"])
+        try:
+            ydl.download([f"ytsearch{n}:{singer} official audio"])
+        except Exception as e:
+            if "Maximum number of downloads reached" in str(e):
+                pass 
+            else:
+                raise e
 
-    time.sleep(2) 
+    time.sleep(5) 
     files = [f for f in os.listdir() if f.startswith(f"temp_{unique_id}_") and f.endswith(".mp3")]
     
     if not files:
@@ -39,4 +44,5 @@ def run_mashup(singer, n, y, out_file):
 
     mashup.export(out_file, format="mp3")
     return out_file
+
 
